@@ -1,0 +1,236 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terms and Conditions for Stealth App (India)"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewEffectiveDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Effective Date: [Insert Today's Date]"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Stealth!"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='These terms and conditions (\"Terms\") govern your use of the Stealth mobile application (\"App\") developed by WraithCoders (\"we,\" \"us,\" or \"our\"). By accessing or using the App in India, you agree to be bound by these Terms and the laws of India, including:\n- The Information Technology Act, 2000 (including amendments)\n- The Indian Penal Code, 1860\n- The Digital Personal Data Protection Act, 2023 (DPD Act) (once notified)'
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewUserAccounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. User Accounts"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewUserAccountsDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    Anonymous Accounts: Stealth offers anonymous user accounts in accordance with the DPDP Act. We will not collect or store any personally identifiable information (PII) unless required by law or with your explicit consent.
+    User Conduct: You are responsible for all activity that occurs under your anonymous account. You agree to use the App in a lawful and respectful manner and to comply with all applicable Indian laws and regulations. You agree not to use the App for any purpose that is:\n- Defamatory, harassing, obscene, hateful, or racially or ethnically offensive under the Indian Penal Code.\n- A violation of someone's privacy under the Information Technology Act.\n- A threat to national security or public order under the Information Technology Act."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewContentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    Text-Only Posts: Users can only post text content on the App. Images, videos, or other media formats are not allowed.
+    User-Generated Content: You retain all ownership rights to the text content you post. However, by posting content, you grant us a non-exclusive, royalty-free, worldwide license to use, modify, translate, publish, distribute, and display your content on the App and for promotional purposes, provided it complies with these Terms and applicable Indian laws.\nProhibited Content: You agree not to post any text content that is:\n- A violation of someone's privacy under the Information Technology Act.\n- Obscene, hateful, or defamatory under the Indian Penal Code.\n- A threat to national security or public order under the Information Technology Act.\n- Promotes violence or criminal activity.\n- Spams or otherwise solicits users."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewModeration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Moderation"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewModerationDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We reserve the right, but are not obligated, to monitor or moderate content posted on the App. We may remove any text content that we deem to be in violation of these Terms, applicable Indian laws, or that is otherwise objectionable. We will comply with takedown requests under the Information Technology Act when they are legally valid."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewDisclaimers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4. Disclaimers"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewDisclaimersDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='    The App is provided on an \"as is\" and \"as available\" basis. We make no representations or warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.\nWe do not warrant that the App will be uninterrupted, error-free, or free of viruses or other harmful components.\nWe will not be liable for any damages arising from your use of the App, including but not limited to direct, indirect, incidental, consequential, or punitive damages, to the extent permitted by Indian law.'
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewLimitation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5. Limitation of Liability"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewLimitationDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    Our liability to you for any damages arising out of or related to your use of the App shall be limited to the extent permitted by Indian law."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewTermination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6. Termination"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewTerminationDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    We may terminate your access to the App at any time, for any reason, without notice, and in accordance with the DPDP Act."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewChanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7. Changes to Terms"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewChangesDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    We may revise these Terms at any time by posting the revised Terms on the App. You are expected to check this page periodically so you are aware of any changes, as they are binding on you."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewGoverning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8. Governing Law"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewGoverningDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewDispute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9. Dispute Resolution"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewDisputeDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    Any dispute arising out of or relating to these Terms or your use of the App shall be subject to the exclusive jurisdiction of the courts located in [Your City/State], India."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textViewEntire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10. Entire Agreement"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewEntireDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="    These Terms constitute the entire agreement between you and us regarding your use of the App and supersede all prior or contemporaneous communications and proposals, whether oral or written."
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewData"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="11. Data Protection"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="16dp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewDataDetails"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="    We are committed to protecting your privacy and complying with the DPDP Act. You can find our Privacy Policy on the App, which explains how we collect, use, and disclose your data."-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginTop="8dp" />-->
+
+    </LinearLayout>
+</ScrollView>

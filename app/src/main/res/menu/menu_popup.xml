@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuCopy"
+        android:title="Copy"
+        android:drawablePadding="10dp"/>
+    <item
+        android:id="@+id/menuReport"
+        android:title="Report"
+        android:drawableLeft="@drawable/report"
+        android:drawablePadding="10dp"/>
+</menu>

@@ -1,0 +1,78 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Report"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+        android:id="@+id/radio_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hate Speech" />
+
+        <RadioButton
+            android:id="@+id/radio_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Violence or Threats" />
+
+        <RadioButton
+            android:id="@+id/radio_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spam" />
+
+        <RadioButton
+            android:id="@+id/radio_button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Misinformation" />
+        <RadioButton
+            android:id="@+id/radio_button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/edtReport"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Tell us why you're reporting this post"
+        android:maxLength="300"
+        android:lines="5"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:gravity="top"
+        android:background="@drawable/edittext_box"/>
+    <!-- Custom Button (Optional) -->
+    <Button
+        android:id="@+id/btnReport"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_custom"
+        android:text="Report"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

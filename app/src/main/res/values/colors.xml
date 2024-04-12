@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#0088FF</color>
+    <color name="blue_dark">#004080</color>
+
+<!--    <color name="backgroundColor">#000000</color>-->
+<!--    <color name="buttonbackgroundTint">#C8B505</color>-->
+
+        <color name="gray500">#757575</color>
+        <color name="gray600">#616161</color>
+        <color name="gray700">#424242</color>
+        <color name="gray800">#212121</color>
+        <color name="gray900">#000000</color>
+
+
+</resources>
