@@ -1,5 +1,7 @@
 package com.example.stealth;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +19,16 @@ public class MyPosts extends PostsManager{
 
     }
     @Override
+    public void OnCompletePostRead()
+    {
+
+        if(adapter!=null) {
+            Log.i("Function","Called");
+            adapter.notifyDataSetChanged();
+        }
+//        this.UpVote(Posts.get(0));
+    }
+    @Override
     public void addListenerforHead()
     {
         MyActivity.child(UserId).child("Post").child("Head").addValueEventListener(new ValueEventListener() {
@@ -28,7 +40,7 @@ public class MyPosts extends PostsManager{
                 if(Posts.isEmpty())
                 {
                     PostKey=key;
-                    RetrieveNPost(10);
+                    RetrieveNPost(5);
                     return;
                 }
                 Post.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,18 +100,19 @@ public class MyPosts extends PostsManager{
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists())pinfo.VoteType=snapshot.getValue(long.class);
-                        MyActivity.child(UserId).child("Post").child(PostKey).child("Next").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                PostKey=snapshot.getValue(String.class);
-                                OnPostRead(pinfo);
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                    }
 
-                            }
-                        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                MyActivity.child(UserId).child("Post").child(PostKey).child("Next").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        PostKey=snapshot.getValue(String.class);
+                        OnPostRead(pinfo);
                     }
 
                     @Override

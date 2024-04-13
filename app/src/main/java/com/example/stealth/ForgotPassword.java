@@ -111,19 +111,4 @@ public class ForgotPassword extends AppCompatActivity {
         }
         return chk;
     }
-    public static String generateOTP(int length) {
-        // Create a Random object
-        Random random = new Random();
-
-        // StringBuilder to store the OTP
-        StringBuilder otp = new StringBuilder();
-
-        // Generate random digits and append them to the OTP
-        for (int i = 0; i < length; i++) {
-            otp.append(random.nextInt(10)); // Generates random number between 0 and 9
-        }
-
-        // Convert StringBuilder to String and return the OTP
-        return otp.toString();
-    }
 }

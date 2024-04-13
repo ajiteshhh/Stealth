@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 public class BackendCommon extends Fragment {
 //    static RecyclerPostAdapter adapter = new RecyclerPostAdapter();
-    static String UserId="-NvAj0pUDgJKKv4AmcXa";
+    static String UserId;
 //    PostsManager postsManager = new PostsManager("-NvAj0pUDgJKKv4AmcXa");
-     static PostsManager postsManager = new PostsManager(UserId);
-     static MyPosts myPosts = new MyPosts(UserId);
+     static PostsManager postsManager ;
+
+     static PollManager pollManager ;
+     static MyPosts myPosts;
      static CommentManager commentManager;
-     static PollManager pollManager = new PollManager(UserId);
      static ArrayList<String> AddOption;
 //     static
 }

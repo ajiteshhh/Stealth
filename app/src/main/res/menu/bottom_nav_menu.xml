@@ -13,7 +13,7 @@
     <item android:title="My Activity"
         android:id="@+id/menuMyActivity"
         android:icon="@drawable/my_post"/>
-    <item android:title="About Us"
+    <item android:title="Stealth"
         android:id="@+id/menuAbout"
-        android:icon="@drawable/dashboard"/>
+        android:icon="@drawable/ic_launcher_round"/>
 </menu>

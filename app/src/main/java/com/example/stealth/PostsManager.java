@@ -32,7 +32,7 @@ public class PostsManager extends DatabaseManager{
                 if(Posts.isEmpty())
                 {
                     PostKey=key;
-                    RetrieveNPost(10);
+                    RetrieveNPost(5);
                     return;
                 }
                 Post.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -46,6 +46,7 @@ public class PostsManager extends DatabaseManager{
                         pinfo.UserId=snapshot.child("User").getValue(String.class);
                         pinfo.DownVote=snapshot.child("DownVote").getValue(long.class);
                         pinfo.UpVote=snapshot.child("UpVote").getValue(long.class);
+                        pinfo.VoteType=0;
                         Posts.add(0,pinfo);
                         Vote.child(key).child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -110,12 +111,13 @@ public class PostsManager extends DatabaseManager{
         }
 //        this.UpVote(Posts.get(0));
     }
-    public void RetrieveNPost(int n)
+    public boolean RetrieveNPost(int n)
     {
         if(PostKey == null)
-                return;
+                return false;
         PostToRead=n;
         GetNextPost();
+        return true;
     }
     public void ResetPostKey()
     {
@@ -140,6 +142,8 @@ public class PostsManager extends DatabaseManager{
             return false;
         }
         Posts.add(pinfo);
+//        adapter
+//        adapter.notifyItemChanged(Posts.size()-1);
         if(--PostToRead>0)
         {
             GetNextPost();
@@ -167,6 +171,7 @@ public class PostsManager extends DatabaseManager{
                 pinfo.UserId=snapshot.child("User").getValue(String.class);
                 pinfo.DownVote=snapshot.child("DownVote").getValue(long.class);
                 pinfo.UpVote=snapshot.child("UpVote").getValue(long.class);
+                pinfo.VoteType=0;
                 Vote.child(pinfo.Key).child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -179,6 +184,7 @@ public class PostsManager extends DatabaseManager{
 
                             }
                         });
+
             }
 
             @Override

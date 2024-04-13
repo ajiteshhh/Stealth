@@ -27,6 +27,7 @@ public class PollsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RecyclerPollAdapter adapter = new RecyclerPollAdapter(getActivity(), BackendCommon.pollManager.Polls);
         recyclerView.setAdapter(adapter);
+        BackendCommon.pollManager.adapter=adapter;
         if (adapter.getItemCount() == 0) {
             txtNoPoll.setVisibility(View.VISIBLE);
         } else {

@@ -39,7 +39,14 @@ public class SignIn extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+//        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+//        Toast.makeText(this, "" + currentUser.getUid(), Toast.LENGTH_SHORT);
+
         if(currentUser != null && currentUser.isEmailVerified()){
+            BackendCommon.UserId=currentUser.getUid();
+            BackendCommon.postsManager=new PostsManager(BackendCommon.UserId);
+            BackendCommon.pollManager=new PollManager(BackendCommon.UserId);
+            BackendCommon.myPosts=new MyPosts(BackendCommon.UserId);
             Intent var = new Intent(SignIn.this, MainActivity.class);
             startActivity(var);
             finish();

@@ -58,7 +58,9 @@ public class AddPostPollFragment extends BackendCommon {
                     return;
                 }
                 postsManager.MakePost(post);
-                edtPost.setText(null);
+                Fragment selectedFragment = new HomeFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
             }
         });
 
@@ -115,6 +117,9 @@ public class AddPostPollFragment extends BackendCommon {
                 for(int i=0;i<AddOption.size();i++)
                     pollInfo.Options.add(new Pair<>(AddOption.get(i),0));
                 pollManager.MakePoll(pollInfo);
+                Fragment selectedFragment = new PollsFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
             }
         });
         return rootView;

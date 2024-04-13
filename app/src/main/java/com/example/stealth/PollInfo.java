@@ -9,4 +9,5 @@ public class PollInfo {
     String Key;
     String UserId;
     ArrayList<Pair<String,Integer>> Options;
+    String Selected;
 }

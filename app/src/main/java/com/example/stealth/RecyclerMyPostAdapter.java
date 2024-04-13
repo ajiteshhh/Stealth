@@ -39,12 +39,84 @@ public class RecyclerMyPostAdapter extends RecyclerView.Adapter<RecyclerMyPostAd
         holder.txtPost.setText(arrPosts.get(position).Info);
         holder.txtUp.setText(arrPosts.get(position).UpVote+"");
         holder.txtDown.setText(arrPosts.get(position).DownVote+"");
-
-        if(arrPosts.get(position).VoteType == 1)
+        if(arrPosts.get(position).VoteType == 1) {
             holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
-        else if (arrPosts.get(position).VoteType == -1)
-            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
 
+        }        else if (arrPosts.get(position).VoteType == -1) {
+            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+            holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+
+        }
+        else {
+            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+            holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+        }
+
+        holder.txtUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(BackendCommon.UserId.equals(arrPosts.get(position).UserId));
+//                {
+//                    return;
+//                }
+                if(arrPosts.get(position).VoteType == 1)
+                {
+                    holder.txtUp.setText(String.valueOf(--arrPosts.get(position).UpVote));
+                    arrPosts.get(position).VoteType = 0;
+                    holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+                }
+                else if(arrPosts.get(position).VoteType == -1)
+                {
+                    holder.txtUp.setText(String.valueOf(++arrPosts.get(position).UpVote));
+                    holder.txtDown.setText(String.valueOf(--arrPosts.get(position).DownVote));
+                    arrPosts.get(position).VoteType = 1;
+                    holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
+                    holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+                }
+                else
+                {
+                    holder.txtUp.setText(String.valueOf(++arrPosts.get(position).UpVote));
+                    arrPosts.get(position).VoteType=1;
+                    holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
+                }
+
+                BackendCommon.postsManager.UpVote(arrPosts.get(position));
+            }
+        });
+        holder.txtDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+
+                if(arrPosts.get(position).VoteType == -1)
+                {
+                    holder.txtDown.setText(String.valueOf(--arrPosts.get(position).DownVote));
+                    arrPosts.get(position).VoteType=0;
+                    holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+                }
+                else if(arrPosts.get(position).VoteType == 1)
+                {
+                    holder.txtDown.setText(String.valueOf(++arrPosts.get(position).DownVote));
+                    holder.txtUp.setText(String.valueOf(--arrPosts.get(position).UpVote));
+                    arrPosts.get(position).VoteType=-1;
+                    holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+                    holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+                }
+                else
+                {
+                    holder.txtDown.setText(String.valueOf(++arrPosts.get(position).DownVote));
+                    arrPosts.get(position).VoteType = -1;
+                    holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+                }
+
+                BackendCommon.postsManager.DownVote(arrPosts.get(position));
+            }
+        });
+        if (position == getItemCount() - 3) {
+            if(BackendCommon.myPosts.PostKey==null)
+                Toast.makeText(context, "Reach End", Toast.LENGTH_SHORT).show();
+            BackendCommon.myPosts.RetrieveNPost(5);
+        }
         holder.imgReport.setVisibility(View.GONE);
         holder.post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +125,10 @@ public class RecyclerMyPostAdapter extends RecyclerView.Adapter<RecyclerMyPostAd
 
                 Intent intent = new Intent(context, PostDetailsActivity.class);
                 intent.putExtra("postText", clickedPost.Info);
-                intent.putExtra("upVote", clickedPost.UpVote);
-                intent.putExtra("downVote", clickedPost.DownVote);
+                intent.putExtra("upVote", clickedPost.UpVote+"");
+                intent.putExtra("downVote", clickedPost.DownVote+"");
                 intent.putExtra("Key",clickedPost.Key);
+                intent.putExtra("VoteType", clickedPost.VoteType+"");
                 context.startActivity(intent);
             }
         });

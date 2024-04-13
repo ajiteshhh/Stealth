@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class HomeFragment extends BackendCommon {
-    Button btnSignOut;
     TextView txtNoPost;
 
     @Nullable
@@ -29,25 +28,12 @@ public class HomeFragment extends BackendCommon {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         txtNoPost = rootView.findViewById(R.id.txtNoPost);
-        btnSignOut = rootView.findViewById(R.id.btnSignOut);
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent var = new Intent(getActivity(), SignIn.class);
-                startActivity(var);
-                getActivity().finish();
-            }
-        });
-
 
         RecyclerView recyclerView;
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerPostAdapter adapter = new RecyclerPostAdapter(getActivity(), BackendCommon.postsManager.Posts);
         recyclerView.setAdapter(adapter);
-//        recyclerView.
         postsManager.adapter = adapter;
         if (adapter.getItemCount() == 0) {
             txtNoPost.setVisibility(View.VISIBLE);

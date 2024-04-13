@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,7 +66,7 @@ public class PollDetailsActivity extends AppCompatActivity {
                 int screenHeight = displayMetrics.heightPixels;
 
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                bottomSheetBehavior.setPeekHeight(screenHeight - pollHeight);
+                bottomSheetBehavior.setPeekHeight(screenHeight - pollHeight - 150);
             }
         });
         int position = getIntent().getIntExtra("position", -1);
@@ -81,11 +82,12 @@ public class PollDetailsActivity extends AppCompatActivity {
         recyclerViewPoll.setAdapter(adapterPoll);
 
         BackendCommon.commentManager = new CommentManager(pollInfo.Key, pollInfo.UserId);
+        Toast.makeText(this, pollInfo.Key+" "+pollInfo.UserId,Toast.LENGTH_SHORT).show();
         recyclerViewComment = findViewById(R.id.recyclerViewComment);
         recyclerViewComment.setLayoutManager(new LinearLayoutManager(this));
         RecyclerCommentAdapter adapterComment = new RecyclerCommentAdapter(this, BackendCommon.commentManager.Comments );
-        recyclerViewPoll.setAdapter(adapterComment);
-
+        recyclerViewComment.setAdapter(adapterComment);
+        BackendCommon.commentManager.adapter=adapterComment;
         edtComment = findViewById(R.id.edtComment);
         imgSend = findViewById(R.id.imgSend);
         imgSend.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +97,8 @@ public class PollDetailsActivity extends AppCompatActivity {
                 if(comment.isEmpty())
                     return;
                 BackendCommon.commentManager.MakeComment(comment);
-                edtComment.setText(null);
+//                Toast.makeText(getCallingActivity(), "hi hello ",Toast.LENGTH_SHORT).show();
+                edtComment.setText("");
             }
         });
 

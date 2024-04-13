@@ -48,13 +48,22 @@ public class RecyclerPostAdapter extends RecyclerView.Adapter<RecyclerPostAdapte
         holder.txtUp.setText(String.valueOf(arrPosts.get(position).UpVote));
         holder.txtDown.setText(String.valueOf(arrPosts.get(position).DownVote));
 
-        if(arrPosts.get(position).VoteType == 1)
+        if(arrPosts.get(position).VoteType == 1) {
             holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
-        else if (arrPosts.get(position).VoteType == -1)
+            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+
+        }        else if (arrPosts.get(position).VoteType == -1) {
             holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
-        //For scrolling
-        if (position == getItemCount() - 2) {
-            Toast.makeText(context, "Reach End"+BackendCommon.postsManager.PostKey, Toast.LENGTH_SHORT).show();
+            holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+
+        }
+        else {
+            holder.txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+            holder.txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+        }
+        if (position == getItemCount() - 3) {
+            if(BackendCommon.postsManager.PostKey==null)
+                Toast.makeText(context, "Reach End"+BackendCommon.postsManager.PostKey, Toast.LENGTH_SHORT).show();
             BackendCommon.postsManager.RetrieveNPost(5);
         }
 
@@ -107,14 +116,9 @@ public class RecyclerPostAdapter extends RecyclerView.Adapter<RecyclerPostAdapte
                 popupMenu.show();
             }
         });
-        int working=0;
         holder.txtUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(BackendCommon.UserId.equals(arrPosts.get(position).UserId));
-//                {
-//                    return;
-//                }
                 if(arrPosts.get(position).VoteType == 1)
                 {
                     holder.txtUp.setText(String.valueOf(--arrPosts.get(position).UpVote));
@@ -175,9 +179,10 @@ public class RecyclerPostAdapter extends RecyclerView.Adapter<RecyclerPostAdapte
                 Intent intent = new Intent(context, PostDetailsActivity.class);
 
                 intent.putExtra("postText", clickedPost.Info);
-                intent.putExtra("upVote", clickedPost.UpVote);
-                intent.putExtra("downVote", clickedPost.DownVote);
-                intent.putExtra("Key",clickedPost.Key);
+                intent.putExtra("upVote", clickedPost.UpVote+"");
+                intent.putExtra("downVote", clickedPost.DownVote+"");
+                intent.putExtra("Key", clickedPost.Key);
+                intent.putExtra("VoteType", clickedPost.VoteType+"");
                 context.startActivity(intent);
             }
         });

@@ -21,6 +21,7 @@ public class DatabaseManager {
     static DatabaseReference Vote=dr.child("Vote");
     static DatabaseReference Poll = dr.child("Poll");
     static DatabaseReference PollVote = dr.child("PollVote");
+    static DatabaseReference ReportCount = dr.child("ReportCount");
     static TextView textView;
 //    static public void Out(String s)
 //    {textView.setText(textView.getText()+s+"\n");}

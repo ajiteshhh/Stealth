@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class MyPostFragment extends BackendCommon {
     TextView txtNoPost;
-    ArrayList<PostInfo> arrMyPost = new ArrayList<>();
     public MyPostFragment() {
         // Required empty public constructor
     }
@@ -24,6 +23,7 @@ public class MyPostFragment extends BackendCommon {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
         txtNoPost = rootView.findViewById(R.id.txtNoPost);
+
         RecyclerView recyclerView;
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
