@@ -183,6 +183,8 @@ public class RecyclerPostAdapter extends RecyclerView.Adapter<RecyclerPostAdapte
                 intent.putExtra("downVote", clickedPost.DownVote+"");
                 intent.putExtra("Key", clickedPost.Key);
                 intent.putExtra("VoteType", clickedPost.VoteType+"");
+                intent.putExtra("User", clickedPost.UserId);
+                intent.putExtra("position", position);
                 context.startActivity(intent);
             }
         });

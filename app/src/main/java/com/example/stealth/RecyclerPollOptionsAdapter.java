@@ -1,6 +1,10 @@
 package com.example.stealth;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -22,10 +27,11 @@ public class RecyclerPollOptionsAdapter extends RecyclerView.Adapter<RecyclerPol
     private int selectedPosition = -1;  // No selection by default
     private Context context;
     private int totalCount = 0;
-
-    public RecyclerPollOptionsAdapter(Context context, ArrayList<Pair<String,Integer>> pollOptions) {
+    private int pollindex;
+    public RecyclerPollOptionsAdapter(Context context, ArrayList<Pair<String,Integer>> pollOptions,int position) {
         this.pollOptions = pollOptions;
         this.context = context;
+        this.pollindex=position;
         if (pollOptions != null) {
             for (Pair<String, Integer> option : pollOptions) {
                 totalCount += option.second;
@@ -43,20 +49,51 @@ public class RecyclerPollOptionsAdapter extends RecyclerView.Adapter<RecyclerPol
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Pair<String, Integer> pollOption = pollOptions.get(position);
+
         holder.txtOption.setText(pollOptions.get(position).first);
+        Pair<String, Integer> pollOption = pollOptions.get(position);
 
         holder.txtOption.setOnClickListener(v -> {
-            pollOptions.set(position,new Pair<>(pollOption.first,pollOption.second+20));
-//            BackendCommon.pollManager.SelectPoll(BackendCommon.pollManager.Polls.get(position),pollOption.first);
-//            totalCount+=1;
-            Toast.makeText(context,"Option Clicked: ggg "+position +"\nporgress: ",Toast.LENGTH_SHORT).show();
-            notifyDataSetChanged();
-        });
+            int time = 300;//time in milliseconds
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context,"Option Clicked: "+position +"\nselected: "+BackendCommon.pollManager.Polls.get(pollindex).Selected,Toast.LENGTH_SHORT).show();
 
+                    BackendCommon.pollManager.SelectPoll(BackendCommon.pollManager.Polls.get(pollindex),pollOption.first);
+                    totalCount=0;
+                    for (Pair<String, Integer> option : pollOptions) {
+                        totalCount += option.second;
+                    }
+                    notifyDataSetChanged();
+                }
+            }, time);
+        });
         float percentage =totalCount!=0? Float.max(0, (pollOption.second / (float) totalCount) * 100):Float.max(0, 0);
-        holder.txtPercent.setText(String.format("%.0f%%", percentage));
-        holder.seekBar.setProgress((int)percentage+1);
+        if(BackendCommon.pollManager.Polls.get(pollindex).Selected!=null) {
+            holder.txtPercent.setText(String.format("%.0f%%", percentage));
+            if(pollOption.first.equals(BackendCommon.pollManager.Polls.get(pollindex).Selected))
+            {
+//                holder.itemView.findViewById().setBackgroundColor(Color.GREEN);
+//                holder.seekBar
+                // Retrieve the progress drawable from the XML file
+                Drawable progressDrawable = ContextCompat.getDrawable(context, R.drawable.progress_track_selected);
+                holder.seekBar.setProgressDrawable(progressDrawable);
+            }
+            else
+            {
+                Drawable progressDrawable = ContextCompat.getDrawable(context, R.drawable.progress_track);
+                holder.seekBar.setProgressDrawable(progressDrawable);
+            }
+            holder.seekBar.setProgress((int) percentage + 1);
+        }
+        else
+        {
+            Drawable progressDrawable = ContextCompat.getDrawable(context, R.drawable.progress_track);
+            holder.seekBar.setProgressDrawable(progressDrawable);
+            holder.txtPercent.setText(null);
+        }
+//        else
     }
 
 

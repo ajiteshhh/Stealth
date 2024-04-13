@@ -18,8 +18,7 @@ public class PostsManager extends DatabaseManager{
     String PostKey;
     int PostToRead;
     String UserId;
-    static final long MaxReport=10;
-    static final long NoOfPost=10;
+    static final long MaxReport = 3;
     ArrayList<PostInfo> Posts;
     RecyclerPostAdapter adapter;
     public void addListenerforHead()

@@ -26,7 +26,7 @@ public class MyPollFragment extends BackendCommon {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RecyclerPollAdapter adapter = new RecyclerPollAdapter(getActivity(), BackendCommon.pollManager.Polls);
+        RecyclerPollAdapter adapter = new RecyclerPollAdapter(getActivity(), BackendCommon.myPoll.Polls);
         recyclerView.setAdapter(adapter);
         if (adapter.getItemCount() == 0) {
             txtNoPoll.setVisibility(View.VISIBLE);

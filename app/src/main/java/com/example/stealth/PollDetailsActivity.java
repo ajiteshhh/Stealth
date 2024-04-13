@@ -1,17 +1,27 @@
 package com.example.stealth;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,7 +53,6 @@ public class PollDetailsActivity extends AppCompatActivity {
         MaterialToolbar topBar = findViewById(R.id.top_bar);
         topBar.setNavigationIcon(R.drawable.arrow_back);
         topBar.setTitle("Poll");
-        topBar.inflateMenu(R.menu.menu_popup);
         topBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +79,7 @@ public class PollDetailsActivity extends AppCompatActivity {
             }
         });
         int position = getIntent().getIntExtra("position", -1);
+        String User = getIntent().getStringExtra("User");
         pollInfo = BackendCommon.pollManager.Polls.get(position);
         txtTitle = findViewById(R.id.txtTitle);
         txtTitle.setText(pollInfo.Title);
@@ -78,7 +88,7 @@ public class PollDetailsActivity extends AppCompatActivity {
         RecyclerView recyclerViewPoll, recyclerViewComment;
         recyclerViewPoll = findViewById(R.id.recyclerViewPoll);
         recyclerViewPoll.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerPollOptionsAdapter adapterPoll = new RecyclerPollOptionsAdapter(this,arrPolls);
+        RecyclerPollOptionsAdapter adapterPoll = new RecyclerPollOptionsAdapter(this,arrPolls,position);
         recyclerViewPoll.setAdapter(adapterPoll);
 
         BackendCommon.commentManager = new CommentManager(pollInfo.Key, pollInfo.UserId);

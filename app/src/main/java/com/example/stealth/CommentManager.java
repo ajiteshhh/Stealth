@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class CommentManager extends DatabaseManager implements Serializable {
     String ParentKey;
-    final int MaxReport=10;
+    final int MaxReport = 3;
     String UserId;
     ArrayList<CommentInfo> Comments;
     RecyclerCommentAdapter adapter;

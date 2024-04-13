@@ -47,6 +47,7 @@ public class SignIn extends AppCompatActivity {
             BackendCommon.postsManager=new PostsManager(BackendCommon.UserId);
             BackendCommon.pollManager=new PollManager(BackendCommon.UserId);
             BackendCommon.myPosts=new MyPosts(BackendCommon.UserId);
+            BackendCommon.myPoll=new MyPoll(BackendCommon.UserId);
             Intent var = new Intent(SignIn.this, MainActivity.class);
             startActivity(var);
             finish();

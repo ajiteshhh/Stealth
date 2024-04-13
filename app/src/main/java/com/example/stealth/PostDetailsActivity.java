@@ -5,16 +5,20 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -65,6 +69,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         String upVotes = getIntent().getStringExtra("upVote");
         String downVotes = getIntent().getStringExtra("downVote");
         String key = getIntent().getStringExtra("Key");
+        int position=getIntent().getIntExtra("position",-1);
         Toast.makeText(this,key,Toast.LENGTH_SHORT).show();
         txtPost = findViewById(R.id.txtPost);
         txtUp = findViewById(R.id.txtUp);
@@ -74,6 +79,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         txtUp.setText(upVotes);
         txtDown.setText(downVotes);
         String VoteType = getIntent().getStringExtra("VoteType");
+        String User = getIntent().getStringExtra("User");
 
         if(VoteType==null)
         {
@@ -87,69 +93,72 @@ public class PostDetailsActivity extends AppCompatActivity {
             txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
         }
 
-//        txtUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(BackendCommon.myPosts.Posts.get(position).VoteType == 1)
-//                {
-//                    txtUp.setText(String.valueOf(--arrPosts.get(position).UpVote));
-//                    arrPosts.get(position).VoteType = 0;
-//                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
-//                }
-//                else if(arrPosts.get(position).VoteType == -1)
-//                {
-//                    txtUp.setText(String.valueOf(++arrPosts.get(position).UpVote));
-//                    txtDown.setText(String.valueOf(--arrPosts.get(position).DownVote));
-//                    arrPosts.get(position).VoteType = 1;
-//                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
-//                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
-//                }
-//                else
-//                {
-//                    txtUp.setText(String.valueOf(++arrPosts.get(position).UpVote));
-//                    arrPosts.get(position).VoteType=1;
-//                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
-//                }
-//
-//                BackendCommon.postsManager.UpVote(arrPosts.get(position));
-//            }
-//        });
-//        txtDown.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)  {
-//
-//                if(VoteType == -1)
-//                {
-//                    txtDown.setText(String.valueOf(--arrPosts.get(position).DownVote));
-//                    arrPosts.get(position).VoteType=0;
-//                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
-//                }
-//                else if(arrPosts.get(position).VoteType == 1)
-//                {
-//                    txtDown.setText(String.valueOf(++arrPosts.get(position).DownVote));
-//                    txtUp.setText(String.valueOf(--arrPosts.get(position).UpVote));
-//                    arrPosts.get(position).VoteType=-1;
-//                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
-//                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
-//                }
-//                else
-//                {
-//                    txtDown.setText(String.valueOf(++arrPosts.get(position).DownVote));
-//                    arrPosts.get(position).VoteType = -1;
-//                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
-//                }
-//
-//                BackendCommon.postsManager.DownVote(arrPosts.get(position));
-//            }
-//        });
-//
+        txtUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(BackendCommon.postsManager.Posts.get(position).VoteType == 1)
+                {
+                    txtUp.setText(String.valueOf(--BackendCommon.postsManager.Posts.get(position).UpVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType = 0;
+                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+                }
+                else if(BackendCommon.postsManager.Posts.get(position).VoteType == -1)
+                {
+                    txtUp.setText(String.valueOf(++BackendCommon.postsManager.Posts.get(position).UpVote));
+                    txtDown.setText(String.valueOf(--BackendCommon.postsManager.Posts.get(position).DownVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType = 1;
+                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
+                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+                }
+                else
+                {
+                    txtUp.setText(String.valueOf(++BackendCommon.postsManager.Posts.get(position).UpVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType=1;
+                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward_filled, 0, 0, 0);
+                }
+
+                BackendCommon.postsManager.UpVote(BackendCommon.postsManager.Posts.get(position));
+            }
+        });
+        txtDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+
+                if(BackendCommon.postsManager.Posts.get(position).VoteType == -1)
+                {
+                    txtDown.setText(String.valueOf(--BackendCommon.postsManager.Posts.get(position).DownVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType=0;
+                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward, 0, 0, 0);
+                }
+                else if(BackendCommon.postsManager.Posts.get(position).VoteType == 1)
+                {
+                    txtDown.setText(String.valueOf(++BackendCommon.postsManager.Posts.get(position).DownVote));
+                    txtUp.setText(String.valueOf(--BackendCommon.postsManager.Posts.get(position).UpVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType=-1;
+                    txtUp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_upward, 0, 0, 0);
+                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+                }
+                else
+                {
+                    txtDown.setText(String.valueOf(++BackendCommon.postsManager.Posts.get(position).DownVote));
+                    BackendCommon.postsManager.Posts.get(position).VoteType = -1;
+                    txtDown.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_downward_filled, 0, 0, 0);
+                }
+
+                BackendCommon.postsManager.DownVote(BackendCommon.postsManager.Posts.get(position));
+            }
+        });
         MaterialToolbar topBar = findViewById(R.id.top_bar);
         topBar.setNavigationIcon(R.drawable.arrow_back);
         topBar.setTitle("Post");
         Menu menu = topBar.getMenu();
         topBar.inflateMenu(R.menu.menu_popup);
-        MenuItem menuItem = menu.findItem(R.id.menuReport);
-        menuItem.setVisible(false);
+        MenuItem menuItem;
+        if(BackendCommon.UserId.equals(User))
+        {
+            menuItem = menu.findItem(R.id.menuReport);
+            menuItem.setVisible(false);
+        }
         topBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -160,6 +169,27 @@ public class PostDetailsActivity extends AppCompatActivity {
                     ClipData clip = ClipData.newPlainText("Copied Text", text);
                     clipboard.setPrimaryClip(clip);
                     return true;
+                }else if(item.getItemId() == R.id.menuReport)
+                {
+                    LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+                    View customView = inflater.inflate(R.layout.report_dialog, null);
+                    Button button = customView.findViewById(R.id.btnReport);
+                    EditText editText = customView.findViewById(R.id.edtReport);
+                    RadioGroup radioGroup = customView.findViewById(R.id.radio_group);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                    builder.setView(customView);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String text = editText.getText().toString();
+                            if(text.isEmpty() || radioGroup.getCheckedRadioButtonId() == -1)
+                                return;
+//                            BackendCommon.postsManager.ReportPost(key);
+                            alertDialog.dismiss();
+                        }
+                    });
                 }
                 return false;
             }

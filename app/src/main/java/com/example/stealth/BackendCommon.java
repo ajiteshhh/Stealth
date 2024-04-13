@@ -13,6 +13,7 @@ public class BackendCommon extends Fragment {
      static PostsManager postsManager ;
 
      static PollManager pollManager ;
+     static MyPoll myPoll;
      static MyPosts myPosts;
      static CommentManager commentManager;
      static ArrayList<String> AddOption;
