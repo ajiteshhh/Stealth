@@ -1,9 +1,30 @@
-Tools: [Firebase Database, Data Structures, Java, Android Studio]
-◦ It is an anonymous messaging and polling app using Java and Android Studio, integrating Firebase
-Database for real-time data storage and retrieval.
-◦ Implemented a self-created database system utilizing combined linked lists to manage user data and message
-history efficiently, achieving seamless performance even with a high volume of users.
-◦ Created custom UI components to enhance user experience, ensuring intuitive navigation and interaction within
-the app.
-◦ Applied advanced data structures to optimize polling mechanisms, allowing for real-time updates and secure
-anonymous voting
+# Stealth
+
+**Stealth** is an anonymous messaging and polling application developed during the DevJam Hackathon in the first year of university. It leverages Firebase for real-time communication and incorporates custom data structures to efficiently manage user data and message history.
+
+## Features
+
+- **Anonymous Messaging**: Facilitates secure and anonymous communication between users.
+- **Real-time Polling**: Enables users to create and participate in polls with instant updates.
+- **Custom Data Management**: Utilizes combined linked lists to handle user data and message history efficiently.
+- **User-Friendly Interface**: Designed with a focus on intuitive navigation and seamless user experience.
+- **Integrated Frontend and Backend**: Ensures smooth interaction between the application's components.
+
+## Tech Stack
+
+- **Programming Language**: Java
+- **Development Environment**: Android Studio
+- **Database**: Firebase Realtime Database
+- **Data Structures**: Custom implementations using combined linked lists
+
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ajiteshhh/Stealth.git
+## Contributors
+
+* [Ajitesh Singh](https://github.com/ajiteshhh)
+* [Abhay Sachan](https://github.com/AbhaySachan01)
+* Sahil Singh
+* [Akshaibala Sreeni](https://github.com/akdybala)
